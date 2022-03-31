@@ -47,8 +47,6 @@ def more_events(val, file_nine, lane_dupli=False):
 def open_files():
     global path_files
 
-    #path_files = "/home/geezylucas/Documentos/Python3/floorfiles/"
-    #path_files = sys.argv[1] + '\\'
     path_files = 'C:\\ArchivosPlanosWeb\\'
     list_files = [f for f in os.listdir(path_files)]
 
@@ -65,8 +63,8 @@ def eventos_nuevos(df_occur_dosA, file_nine):
                           usecols=(3, 4, 5), names=["a", "b", "c"])
 
     df_nueveA = pd.DataFrame(nineA_data)
-    df_nueveA["combined"] = df_nueveA["a"].astype(str) + "," \
-        + df_nueveA["b"].astype(str) + "," + df_nueveA["c"]
+    df_nueveA["combined"] = df_nueveA["a"].astype(int).astype(str) + "," \
+        + df_nueveA["b"].astype(int).astype(str) + "," + df_nueveA["c"]
     df_nueveA = df_nueveA['combined'].drop_duplicates()
 
     p = df_nueveA.isin(df_occur_dosA)
@@ -89,8 +87,8 @@ def calculate(file_two, file_nine):
 
     df.drop(index=indexs, inplace=True)
 
-    df["combined"] = df["a"].astype(str) + "," \
-        + df["b"].astype(str) + "," + df["c"]
+    df["combined"] = df["a"].astype(int).astype(str) + "," \
+        + df["b"].astype(int).astype(str) + "," + df["c"]
 
     df_dosA = df["combined"].drop_duplicates()
 
